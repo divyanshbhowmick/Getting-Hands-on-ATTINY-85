@@ -29,7 +29,7 @@
 #include<util/delay.h>
 #include<SoftwareSerial.h>
 
-SoftwareSerial tiny(PB5, PB4);
+SoftwareSerial pc(PB5, PB4);
 
 #define LED1 PB0  //Defining the LED pin
 #define BTN PB1  //Defining the Button pin
@@ -43,14 +43,14 @@ void setup() {
   DDRB |= (1 << LED1); //Setting LED1 as output
   DDRB &= ~(1 << BTN); //Setting BTN as input
   PORTB |= (1 << BTN); //Setiing BTN as input pullup
-  tiny.begin(9600);
+  pc.begin(9600);
 }
 
 
 void loop() {
 
-  tiny.println(PINB, BIN);
-  tiny.println("status");
+  pc.println(PINB, BIN);
+  pc.println("status");
   if (!(PINB & (1 << PINB1))) //Reading the status of PINB1
   {
     LED_OFF;
